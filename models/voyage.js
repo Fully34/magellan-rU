@@ -19,6 +19,8 @@ var addLocation = function(name, pic) {
     voyage.locations[newLoc.name] = newLoc;
 
     if (voyage.last) {
+
+        // if you try to add a full object as the next or prev property value, we create infinite loops.  Need to set string vals for next/prev props and find the object with that name
         voyage.last.next = newLoc;
         newLoc.prev = voyage.last;
     }
@@ -42,8 +44,9 @@ addLocation('guam', 'http://www.thedailychronic.net/wp-content/uploads/2015/07/G
 
 addLocation('philippines', 'http://s1.it.atcdn.net/wp-content/uploads/2013/01/El-Nido-Philippines-PALAWAN.jpg');
 
-console.log(voyage);
+// console.log(voyage);
 
+module.exports = voyage;
 
 
 

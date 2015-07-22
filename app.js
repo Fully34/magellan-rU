@@ -14,7 +14,9 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get('/', indexController.index);
+app.get('/', indexController.index)
+app.get('/voyage/:locationName', indexController.voyage);
+app.get('/next', indexController.next)
 
 var server = app.listen(5025, function() {
 	console.log('Express server listening on port ' + server.address().port);

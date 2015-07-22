@@ -1,2 +1,24 @@
 extends layout
 
+block pageContents
+
+    h1 #{name}
+
+    if !prev
+        h2 The beginning of Magellan's journey!
+
+    if !next
+        h2 The end!
+
+    div.locationPicture
+        img(src="#{pictureURL}")
+
+    div.voyageNavigation
+        if prev
+            a.voyageNavLink.voyageNavLinkPrev(href="/voyage/#{prev.name}") Prev
+        else
+            span.voyageNavLink.inactive.voyageNavLinkPrev Prev
+        if next
+            a.voyageNavLink.voyageNavLinkNext(href="/voyage/#{next.name}") Next
+        else
+            span.voyageNavLink.inactive.voyageNavLinkNext Next
