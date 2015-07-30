@@ -2,22 +2,29 @@ extends layout
 
 block pageContents
 
+    //- for every page, we access the object associated with it and interpolate the name to the h1
     h1 #{name}
-
+    
+    //- cover edge cases for the first and last locations
     if !prev
         h2 The beginning of Magellan's journey!
 
     if !next
         h2 The end!
 
+    //- use pictureURL prop to access image url and render that bad boy
     div.locationPicture
         img(src="#{pictureURL}")
 
     div.voyageNavigation
+
+        //- if there is a prev prop (which will reference the previous location object) on the current object, link to the previous page by accessing that object's name prop, if not, just put inactive text
         if prev
             a.voyageNavLink.voyageNavLinkPrev(href="/voyage/#{prev.name}") Prev
         else
             span.voyageNavLink.inactive.voyageNavLinkPrev Prev
+
+        //- if there is a next prop (which will reference the previous location object) on the current object, link to the next page by accessing that object's name prop, if not, just put inactive text
         if next
             a.voyageNavLink.voyageNavLinkNext(href="/voyage/#{next.name}") Next
         else
